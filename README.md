@@ -18,3 +18,6 @@ Created by Vincent Willcox AKA TalkTech
 - pip3 install ethtool
 - pip3 install speedtest-cli
 - garden install qrcode
+
+# Running
+- python3 main.py
