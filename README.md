@@ -7,5 +7,7 @@ QR-CODE of the shareable results.
 
 It also provides information about the Raspberry-Pi's network connection (Internal IP and External IP), with a QR-CODE to quick copy
 the information to a mobile device.
-
+#
+![Early Example running on a HyperPixel 4.0 Touch](http://talktech.info/wp-content/uploads/2019/06/net-app.jpg)
+An Early example of Netapp-Touch running on a HyperPixel 4.0 Touch
 Created by Vincent Willcox AKA TalkTech
