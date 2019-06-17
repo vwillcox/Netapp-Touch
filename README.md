@@ -11,3 +11,6 @@ the information to a mobile device.
 ![Early Example running on a HyperPixel 4.0 Touch](http://talktech.info/wp-content/uploads/2019/06/net-app.jpg)
 An Early example of Netapp-Touch running on a HyperPixel 4.0 Touch
 Created by Vincent Willcox AKA TalkTech
+
+# Prerequisite 
+sudo pip3 install kivy
