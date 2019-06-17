@@ -1,0 +1,27 @@
+<Container>:
+    display: display
+    rows: 1
+    BoxLayout:
+        orientation: "vertical"
+        SpeedtestButton:
+            on_press : root.please_wait()
+            on_release: root.speed_test(display_qr)
+        NetworkButton:
+            on_release: root.show_allips(display_qr)
+        ScanButton:
+            on_release: root.scan4pi(display_qr)
+        ExitButton:
+            on_release: app.stop()    
+    BoxLayout:
+        orientation: "vertical"
+        Label:
+            id: display
+            font_size: dp(19)
+            text: "Welcome!"
+        QRCodeWidget:
+            visible: False
+            size_hint_x: 1 if self.visible else 0
+            opacity: 1 if self.visible else 0
+            disabled: not self.visible
+            id: display_qr
+
