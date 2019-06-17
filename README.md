@@ -13,8 +13,8 @@ An Early example of Netapp-Touch running on a HyperPixel 4.0 Touch
 Created by Vincent Willcox AKA TalkTech
 
 # Prerequisite 
-sudo pip3 install -U Cython==0.29.9
-sudo pip3 install git+https://github.com/kivy/kivy.git@master
-pip3 install ethtool
-pip3 install speedtest-cli
-garden install qrcode
+- sudo pip3 install -U Cython==0.29.9
+- sudo pip3 install git+https://github.com/kivy/kivy.git@master
+- pip3 install ethtool
+- pip3 install speedtest-cli
+- garden install qrcode
