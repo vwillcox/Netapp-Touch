@@ -1,3 +1,6 @@
+# Update September 2019
+I had been using the "IPGetter" python library. This has vanished. Thankfully there is a new library called "IPGetter2" and it has a compatiblity mode. So I have updated the code to use this
+
 # Netapp-Touch
 Test your networks speed, connectivity, wifi and find what's connected. This project uses KIVY and KIVY KITCHEN code to create a
 touch screen interface and QR Codes for quick information transfer to mobile devices.
@@ -17,6 +20,7 @@ Created by Vincent Willcox AKA TalkTech
 - sudo pip3 install git+https://github.com/kivy/kivy.git@master
 - pip3 install ethtool
 - pip3 install speedtest-cli
+- pip3 install ipgetter2
 - garden install qrcode
 
 # Running
