@@ -25,6 +25,7 @@ echo "Done"
 echo "Now installing python modules"
 pip3 install -U Cython==0.29.9
 pip3 install -r requirements.txt
+pip3 install ipgetter2
 garden install qrcode
 
 
