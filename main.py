@@ -10,7 +10,8 @@ from kivy.uix.gridlayout import GridLayout
 from kivy.uix.label import Label
 from kivy.garden.qrcode import QRCodeWidget
 from kivy.uix.widget import Widget
-import ipgetter, socket, os, ctypes, requests, time
+import socket, os, ctypes, requests, time #remove IPGEtter
+from ipgetter2 import ipgetter1 as ipgetter #Now use IPGetter2 Direct replacement library
 from threading import Thread
 
 import os
