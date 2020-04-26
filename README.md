@@ -1,3 +1,7 @@
+# Updated April 26 2020
+This tool now uses the official Ookla Speedtest CLI to get the speed of your internet connection.
+It also now works fully on a Raspberry Pi 4 with an attached Pimoroni Hyperpixel 4 Touch
+
 # Update September 2019
 I had been using the "IPGetter" python library. This has vanished. Thankfully there is a new library called "IPGetter2" and it has a compatiblity mode. So I have updated the code to use this
 
@@ -16,12 +20,7 @@ An Early example of Netapp-Touch running on a HyperPixel 4.0 Touch
 Created by Vincent Willcox AKA TalkTech
 
 # Prerequisite 
-- sudo pip3 install -U Cython==0.29.9
-- sudo pip3 install git+https://github.com/kivy/kivy.git@master
-- pip3 install ethtool
-- pip3 install speedtest-cli
-- pip3 install ipgetter2
-- garden install qrcode
+COMMING SOON!
 
 # Running
 - python3 main.py
