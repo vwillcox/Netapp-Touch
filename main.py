@@ -1,4 +1,3 @@
-import speedtest
 import fcntl
 import struct
 import kivy
@@ -8,14 +7,17 @@ from kivy.uix.button import Button
 from kivy.properties import ObjectProperty
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.label import Label
-from kivy.garden.qrcode import QRCodeWidget
+from kivy_garden.qrcode import QRCodeWidget
 from kivy.uix.widget import Widget
 import socket, os, ctypes, requests, time #remove IPGEtter
 from ipgetter2 import ipgetter1 as ipgetter #Now use IPGetter2 Direct replacement library
 from threading import Thread
+import subprocess, json
+#from hurry.filesize import size, si
 
 import os
 os.environ['KIVY_GL_BACKEND'] = 'gl'
+os.environ['KIVY_WINDOW'] = 'gl'
 
 from os import listdir
 kv_path = './kv/'
@@ -58,25 +60,22 @@ class Container(GridLayout):
         self.display.text = "Speed Test running\nPlease wait a moment"
     
     def speed_test(self, btn):
-        servers = []
-        threads = None
-        s = speedtest.Speedtest()
-        s.get_servers(servers)
-        s.get_best_server()
-        s.download(threads=threads)
-        s.upload(threads=threads)
-        s.results.share()
-        results_dict = s.results.dict()
-        download_result = results_dict["download"]
-        upload_result = results_dict["upload"]
-        download_result = str(int(round(download_result / 1000.0 / 1000.0, 0)))
-        upload_result = str(int(round(results_dict["upload"] / 1000.0 / 1000.0, 0)))
-        ping = str(int(round(results_dict["ping"], 0)))
-        your_isp = results_dict["client"]["isp"]
-        share_link = results_dict["share"]
-        self.display.text = "Download Speed: " + download_result + "Mbs\nUpload Speed: " + upload_result + "Mbs\nPing: " + ping + "ms\nYour ISP: " + your_isp
+        stdoutdata = subprocess.getoutput("speedtest -f json")
+        results = json.loads(stdoutdata)
+        for key in results:
+            download = results["download"]["bandwidth"]
+            upload = results["upload"]["bandwidth"]
+            isp = results["isp"]
+            ping = results["ping"]["latency"]
+            url = results["result"]["url"]
+        down = str(round(download / 125000, 2))
+        #down = size(download)
+        up =  str(round(upload / 125000, 2))
+        #up = size(upload)
+        ping = str(ping)
+        self.display.text = "Download Speed: " + down + "Mbps\nUpload Speed: " + up + "Mbps\nPing: " + ping + "ms\nYour ISP: " + isp
         btn.visible = True
-        btn.data = share_link
+        btn.data = url
 
     def show_allips(self, btn):
         myip = ipgetter.myip()
