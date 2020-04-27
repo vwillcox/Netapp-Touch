@@ -1,2 +1,5 @@
-ethtool
-speedtest-cli
+ipgetter2==1.1.10
+requests==2.21.0
+Kivy==1.11.1
+kivy_garden.qrcode==2019.914
+kivy_garden==0.1.4
