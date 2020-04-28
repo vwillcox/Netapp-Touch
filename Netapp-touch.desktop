@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=RPi-infoscreen
+Comment=Kivy RPI Infoscreen
+NoDisplay=false
+Exec=sh /home/pi/Netapp-Touch/start.sh
+NotShowIn=GNOME;KDE;XFCE;
+
