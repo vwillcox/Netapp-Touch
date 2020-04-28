@@ -13,7 +13,6 @@ import socket, os, ctypes, requests, time #remove IPGEtter
 from ipgetter2 import ipgetter1 as ipgetter #Now use IPGetter2 Direct replacement library
 from threading import Thread
 import subprocess, json
-#from hurry.filesize import size, si
 
 import os
 os.environ['KIVY_GL_BACKEND'] = 'gl'
@@ -69,9 +68,7 @@ class Container(GridLayout):
             ping = results["ping"]["latency"]
             url = results["result"]["url"]
         down = str(round(download / 125000, 2))
-        #down = size(download)
         up =  str(round(upload / 125000, 2))
-        #up = size(upload)
         ping = str(ping)
         self.display.text = "Download Speed: " + down + "Mbps\nUpload Speed: " + up + "Mbps\nPing: " + ping + "ms\nYour ISP: " + isp
         btn.visible = True
@@ -87,7 +84,7 @@ class Container(GridLayout):
                     ip = get_interface_ip(ifname)
                     btn.data = "Internal IP: " + ip +"\nExternal IP: " + myip
                     btn.visible = True
-                    self.display.text = "Internal IP: " + ip +"\nExternal IP: " + myip
+                    self.display.text = "Internal IP: " + ip +"\nExternal IP: " + myip + "\nInterface: " + ifname
                 except IOError:
                     pass
 
