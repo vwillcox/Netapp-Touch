@@ -1,2 +1,5 @@
+Cython
 ethtool
-speedtest-cli
+ipgetter2
+kivy
+kivy-garden.qrcode
