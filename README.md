@@ -1,12 +1,15 @@
+## Updated 2023
+Updated to use the official Speedtest.net CLI.
+
+Please check https://www.speedtest.net/apps/cli for information on installing this version.
+You will need to run it once manaully to agree to their Terms and conditions
+
 # Update September 2019
 I had been using the "IPGetter" python library. This has vanished. Thankfully there is a new library called "IPGetter2" and it has a compatiblity mode. So I have updated the code to use this
 
 # Netapp-Touch
 Test your networks speed, connectivity, wifi and find what's connected. This project uses KIVY and KIVY KITCHEN code to create a
 touch screen interface and QR Codes for quick information transfer to mobile devices.
-
-In the initial version, it will test your internet speed using SPEEDTEST-CLI and provide the details on screen, along with a 
-QR-CODE of the shareable results.
 
 It also provides information about the Raspberry-Pi's network connection (Internal IP and External IP), with a QR-CODE to quick copy
 the information to a mobile device.
