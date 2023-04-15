@@ -14,7 +14,7 @@ touch screen interface and QR Codes for quick information transfer to mobile dev
 It also provides information about the Raspberry-Pi's network connection (Internal IP and External IP), with a QR-CODE to quick copy
 the information to a mobile device.
 #
-![Early Example running on a HyperPixel 4.0 Touch](http://talktech.info/wp-content/uploads/2019/06/net-app.jpg)
+![NEW Example running on a HyperPixel 4.0 Touch](https://talktech.info/wp-content/uploads/2020/04/2020-04-26-205928_800x480_scrot-1.png)
 An Early example of Netapp-Touch running on a HyperPixel 4.0 Touch
 Created by Vincent Willcox AKA TalkTech
 
