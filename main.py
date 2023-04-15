@@ -1,7 +1,8 @@
-import speedtest
 import fcntl
 import struct
 import kivy
+#from kivy.config import Config
+#Config.set("graphics", "fullscreen", "auto")
 from kivy.app import App
 from kivy.lang import Builder
 from kivy.uix.button import Button
@@ -13,9 +14,7 @@ from kivy.uix.widget import Widget
 import socket, os, ctypes, requests, time #remove IPGEtter
 from ipgetter2 import ipgetter1 as ipgetter #Now use IPGetter2 Direct replacement library
 from threading import Thread
-
-import os
-os.environ['KIVY_GL_BACKEND'] = 'gl'
+import subprocess, json
 
 from os import listdir
 kv_path = './kv/'
@@ -58,22 +57,20 @@ class Container(GridLayout):
         self.display.text = "Speed Test running\nPlease wait a moment"
     
     def speed_test(self, btn):
-        servers = []
-        threads = None
-        s = speedtest.Speedtest()
-        s.get_servers(servers)
-        s.get_best_server()
-        s.download(threads=threads)
-        s.upload(threads=threads)
-        s.results.share()
-        results_dict = s.results.dict()
-        download_result = results_dict["download"]
-        upload_result = results_dict["upload"]
-        download_result = str(int(round(download_result / 1000.0 / 1000.0, 0)))
-        upload_result = str(int(round(results_dict["upload"] / 1000.0 / 1000.0, 0)))
-        ping = str(int(round(results_dict["ping"], 0)))
-        your_isp = results_dict["client"]["isp"]
-        share_link = results_dict["share"]
+        stdoutdata = subprocess.getoutput("speedtest -f json")
+        try:
+            results = json.loads(stdoutdata)
+        except ValueError:
+            pass
+
+        download_result = results["download"]["bandwidth"]
+        upload_result = results["upload"]["bandwidth"]
+        download_result = str(round(download_result / 125000, 2))
+        upload_result = str(round(upload_result / 125000, 2))
+        ping_result = results["ping"]["high"]
+        ping = str(round(ping_result, 0))
+        your_isp = results["isp"]
+        share_link = results["result"]["url"]
         self.display.text = "Download Speed: " + download_result + "Mbs\nUpload Speed: " + upload_result + "Mbs\nPing: " + ping + "ms\nYour ISP: " + your_isp
         btn.visible = True
         btn.data = share_link
@@ -95,7 +92,7 @@ class Container(GridLayout):
 class MainApp(App):
 
     def build(self):
-        self.title = 'Awesome app!!!'
+        self.title = 'Netapp-Touch'
         return Container()
 
 
