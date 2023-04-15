@@ -49,7 +49,7 @@ class Container(GridLayout):
 
     def scan4pi(self, btn):
         btn.visible = False
-        self.display.text = "Coming Soon!"
+        #self.display.text = "Coming Soon!"
 
 
     def please_wait(self):
@@ -77,17 +77,19 @@ class Container(GridLayout):
 
     def show_allips(self, btn):
         myip = ipgetter.myip()
+        lines = ''
         ip = socket.gethostbyname(socket.gethostname())
         if ip.startswith("127.") and os.name != "nt":
             interfaces = ["eth0","eth1","eth2","wlan0","wlan1","wifi0","ath0","ath1","ppp0"]
             for ifname in interfaces:
                 try:
-                    ip = get_interface_ip(ifname)
-                    btn.data = "Internal IP: " + ip +"\nExternal IP: " + myip
-                    btn.visible = True
-                    self.display.text = "Internal IP: " + ip +"\nExternal IP: " + myip
+                    ips = get_interface_ip(ifname)
+                    lines = lines + ifname +": " + ips +"\n"
                 except IOError:
                     pass
+                self.display.text = lines + "\nExternal IP: " + myip
+                btn.data = lines + "\nExternal IP: " + myip
+                btn.visible = True
 
 class MainApp(App):
 

@@ -4,6 +4,8 @@ Updated to use the official Speedtest.net CLI.
 Please check https://www.speedtest.net/apps/cli for information on installing this version.
 You will need to run it once manaully to agree to their Terms and conditions
 
+Network information now shows ALL connected interfaces (Wi-Fi, Wired etc) and displays them all!
+
 # Update September 2019
 I had been using the "IPGetter" python library. This has vanished. Thankfully there is a new library called "IPGetter2" and it has a compatiblity mode. So I have updated the code to use this
 
