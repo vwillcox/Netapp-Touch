@@ -15,7 +15,8 @@ It also provides information about the Raspberry-Pi's network connection (Intern
 the information to a mobile device.
 #
 ![NEW Example running on a HyperPixel 4.0 Touch](https://talktech.info/wp-content/uploads/2020/04/2020-04-26-205928_800x480_scrot-1.png)
-An Early example of Netapp-Touch running on a HyperPixel 4.0 Touch
+
+An example of Netapp-Touch running on a HyperPixel 4.0 Touch
 Created by Vincent Willcox AKA TalkTech
 
 # Prerequisite 
