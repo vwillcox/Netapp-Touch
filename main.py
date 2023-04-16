@@ -76,6 +76,10 @@ class Container(GridLayout):
         btn.data = share_link
 
     def show_allips(self, btn):
+        btn.visible = False
+        #cmd = "sudo ethtool eth0 | grep -i speed"
+        #re = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE)
+        #print(re.stdout.decode('utf-8').strip())
         myip = ipgetter.myip()
         lines = ''
         ip = socket.gethostbyname(socket.gethostname())
@@ -83,8 +87,16 @@ class Container(GridLayout):
             interfaces = ["eth0","eth1","eth2","wlan0","wlan1","wifi0","ath0","ath1","ppp0"]
             for ifname in interfaces:
                 try:
-                    ips = get_interface_ip(ifname)
-                    lines = lines + ifname +": " + ips +"\n"
+                    if ("eth" in ifname):
+                        cmd = "sudo ethtool "+ifname+" |grep -i speed"
+                        re = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE)
+                        res = re.stdout.decode('utf-8').strip()
+                        ips = get_interface_ip(ifname)
+                        lines = lines + ifname +": " + ips + "\nLink " + res+"\n"
+                    else:
+                       res =""
+                       ips = get_interface_ip(ifname)
+                       lines = lines + ifname +": " + ips +"\n"
                 except IOError:
                     pass
                 self.display.text = lines + "\nExternal IP: " + myip
