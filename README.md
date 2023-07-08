@@ -1,3 +1,8 @@
+# Test Branch
+I am testing various other readouts for the Screen. However some of these are very broken.
+I am using the testing brach to commit changes should I need to reflash the OS
+Use as your OWN RISK!
+
 # Updated 2023
 Updated to use the official Speedtest.net CLI.
 
