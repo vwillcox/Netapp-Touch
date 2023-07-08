@@ -1,2 +1,2 @@
 export DISPLAY=:0 
-python3 main.py
+sudo python3 main.py

@@ -1,5 +1,4 @@
-import fcntl
-import struct
+import fcntl, struct, subprocess, json, nmap, socket, os, ctypes, requests, time
 import kivy
 from kivy.config import Config
 Config.set("graphics", "fullscreen", "auto")
@@ -11,11 +10,8 @@ from kivy.uix.gridlayout import GridLayout
 from kivy.uix.label import Label
 from kivy_garden.qrcode import QRCodeWidget
 from kivy.uix.widget import Widget
-import socket, os, ctypes, requests, time #remove IPGEtter
 from ipgetter2 import ipgetter1 as ipgetter #Now use IPGetter2 Direct replacement library
 from threading import Thread
-import subprocess, json
-import nmap
 from os import listdir
 kv_path = './kv/'
 for kv in listdir(kv_path):
@@ -95,11 +91,11 @@ class Container(GridLayout):
         scanner = nmap.PortScanner()
         scanner.scan("192.168.50.0/24", arguments="-sS")
         for host in scanner.all_hosts():
-            #text = text + "\n" + f"host is {scanner[host].state()}"
+            #text = text + "\n" + f"host is {host} {scanner[host].state()}"
             if scanner[host].hostname():
                 text = text + '\n' + f"{host} {scanner[host].hostname()}"
             try:
-                text = text + '\n' + f"{host} {scanner[host]['address']['mac']}"
+                #text = text + '\n' + f"{host} {scanner[host]['addresses']['mac']}"
                 if "vendor" in scanner[host]:
                     text = text + '\n' + f"{host} {scanner[host]['vendor'][scanner[host]['addresses']['mac']]}"
             except KeyError:
