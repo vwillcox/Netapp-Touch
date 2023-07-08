@@ -46,7 +46,7 @@ def get_network_speed(interface):
     try:
         cmd = f"cat /sys/class/net/{interface}/speed"
         speed = subprocess.check_output(cmd, shell=True).decode().strip()
-        return f"Network link speed for {interface}: {speed} Mbps"
+        return f"{interface}: {speed} Mbps"
     except subprocess.CalledProcessError:
         return f"Interface '{interface}' not found."
 
@@ -54,7 +54,7 @@ def get_mac_address(interface):
     try:
         cmd = f"cat /sys/class/net/{interface}/address"
         mac_address = subprocess.check_output(cmd, shell=True).decode().strip()
-        return f"MAC address for {interface}: {mac_address}"
+        return f"{interface}: {mac_address}"
     except subprocess.CalledProcessError:
         return f"Interface '{interface}' not found."
 
@@ -124,9 +124,6 @@ class Container(GridLayout):
 
     def show_allips(self, btn):
         btn.visible = False
-        #cmd = "sudo ethtool eth0 | grep -i speed"
-        #re = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE)
-        #print(re.stdout.decode('utf-8').strip())
         myip = ipgetter.myip()
         lines = ''
         ip = socket.gethostbyname(socket.gethostname())
