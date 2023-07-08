@@ -15,7 +15,7 @@ import socket, os, ctypes, requests, time #remove IPGEtter
 from ipgetter2 import ipgetter1 as ipgetter #Now use IPGetter2 Direct replacement library
 from threading import Thread
 import subprocess, json
-
+import nmap
 from os import listdir
 kv_path = './kv/'
 for kv in listdir(kv_path):
@@ -91,7 +91,22 @@ class Container(GridLayout):
     display = ObjectProperty()
     
     def scan(self, btn):
-        btn.visible = False
+        text = ''
+        scanner = nmap.PortScanner()
+        scanner.scan("192.168.50.0/24", arguments="-sS")
+        for host in scanner.all_hosts():
+            #text = text + "\n" + f"host is {scanner[host].state()}"
+            if scanner[host].hostname():
+                text = text + '\n' + f"{host} {scanner[host].hostname()}"
+            try:
+                text = text + '\n' + f"{host} {scanner[host]['address']['mac']}"
+                if "vendor" in scanner[host]:
+                    text = text + '\n' + f"{host} {scanner[host]['vendor'][scanner[host]['addresses']['mac']]}"
+            except KeyError:
+                pass
+        print(text)
+        self.display.text = text
+        #btn.visible = True
         pass
 
     def scan4pi(self, btn):
@@ -100,7 +115,6 @@ class Container(GridLayout):
 
 
     def please_wait(self):
-        
         self.display.text = "Speed Test running\nPlease wait a moment"
     
     def speed_test(self, btn):
