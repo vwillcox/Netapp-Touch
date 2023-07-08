@@ -24,6 +24,10 @@ fi
 echo "Done"
 echo "Now installing python modules"
 pip3 install -r requirements.txt
-
+echo "Now downloading and installing and pre-running Speedtest.net"
+wget https://install.speedtest.net/app/cli/ookla-speedtest-1.2.0-linux-aarch64.tgz
+tar zxvf ookla-speedtest-1.2.0-linux-aarch64.tgz
+chmod +x speedtest
+sudo -u $USER ./speedtest
 echo "All done! Enjoy"
 echo "You just need to run python3 main.py"

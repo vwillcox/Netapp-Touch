@@ -1,15 +1,15 @@
 import fcntl
 import struct
 import kivy
-#from kivy.config import Config
-#Config.set("graphics", "fullscreen", "auto")
+from kivy.config import Config
+Config.set("graphics", "fullscreen", "auto")
 from kivy.app import App
 from kivy.lang import Builder
 from kivy.uix.button import Button
 from kivy.properties import ObjectProperty
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.label import Label
-from kivy.garden.qrcode import QRCodeWidget
+from kivy_garden.qrcode import QRCodeWidget
 from kivy.uix.widget import Widget
 import socket, os, ctypes, requests, time #remove IPGEtter
 from ipgetter2 import ipgetter1 as ipgetter #Now use IPGetter2 Direct replacement library
@@ -57,7 +57,7 @@ class Container(GridLayout):
         self.display.text = "Speed Test running\nPlease wait a moment"
     
     def speed_test(self, btn):
-        stdoutdata = subprocess.getoutput("speedtest -f json")
+        stdoutdata = subprocess.getoutput("./speedtest -f json")
         try:
             results = json.loads(stdoutdata)
         except ValueError:
