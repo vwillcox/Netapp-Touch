@@ -162,11 +162,9 @@ class Container(GridLayout):
             mac_address_info = get_mac_address(interface_name)
             flags_info = get_interface_flags(interface_name)
 
-        self.display.text = lines + "\nExternal IP: " + myip
-        self.display.text = lines + "\nLink Speed: " + speed_info
-        self.display.text = lines + "\nConnection Flags:\n " + flags_info
-        btn.data = lines + "\nExternal IP: " + myip
-        btn.visible = True
+        self.display.text = lines + "\nExternal IP: " + myip + "\nMAC: " + mac_address_info + "\nConnection Flags:\n " + flags_info
+        #btn.data = lines + "\nExternal IP: " + myip
+        #btn.visible = True
 
 class MainApp(App):
 
