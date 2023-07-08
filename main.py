@@ -24,17 +24,17 @@ for kv in listdir(kv_path):
 
 def decode_flags(flags):
     flag_mapping = {
-        0x1: "Up",
-        0x2: "Broadcast",
-        0x4: "Multicast",
-        0x8: "Loopback",
-        0x10: "Lower Up",
-        0x20: "No ARP",
-        0x40: "Promiscuous",
-        0x80: "All Multicast",
-        0x100: "Dynamically Assigned",
-        0x200: "Master",
-        0x400: "Slave"
+        0x1: "\nUp",
+        0x2: "\nBroadcast",
+        0x4: "\nMulticast",
+        0x8: "\nLoopback",
+        0x10: "\nLower Up",
+        0x20: "\nNo ARP",
+        0x40: "\nPromiscuous",
+        0x80: "\nAll Multicast",
+        0x100: "\nDynamically Assigned",
+        0x200: "\nMaster",
+        0x400: "\nSlave"
     }
     decoded_flags = []
     for flag, description in flag_mapping.items():
@@ -63,7 +63,7 @@ def get_interface_flags(interface):
         cmd = f"cat /sys/class/net/{interface}/flags"
         flags = int(subprocess.check_output(cmd, shell=True).decode().strip(), 16)
         decoded_flags = decode_flags(flags)
-        return f"Interface '{interface}' flags: {', '.join(decoded_flags)}"
+        return f"{', '.join(decoded_flags)}"
     except subprocess.CalledProcessError:
         return f"Interface '{interface}' not found."
 
