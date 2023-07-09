@@ -4,7 +4,7 @@ I am using the testing brach to commit changes should I need to reflash the OS
 Use as your OWN RISK!
 
 ```
-sudo python3 test.py
+sudo python3 main.py
 ```
 
 Will show 
