@@ -30,9 +30,9 @@ the information to a mobile device.
 
 ## More Screenshots
 ![LAN Information example](https://talktech.info/wp-content/uploads/2023/07/laninfo.png)
-![Speed Test Example](https://talktech.info/wp-content/uploads/2023/07/speedtest.png)
 
 An example of Netapp-Touch running on a HyperPixel 4.0 Touch
+
 Created by Vincent Willcox AKA TalkTech
 
 # Prerequisite 
