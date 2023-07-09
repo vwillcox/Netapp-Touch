@@ -8,11 +8,13 @@ from kivy.uix.button import Button
 from kivy.uix.scrollview import ScrollView
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.label import Label
+from kivy.uix.image import Image
 from kivy.core.window import Window
+from kivy.uix.floatlayout import FloatLayout
 import socket, os, ctypes, requests, time #remove IPGEtter
 from ipgetter2 import ipgetter1 as ipgetter #Now use IPGetter2 Direct replacement library
 from threading import Thread
-import subprocess, json, os, nmap, fcntl
+import subprocess, json, os, nmap, fcntl, requests
 
 
 def decode_flags(flags):
@@ -65,7 +67,9 @@ def get_interface_ip(ifname):
     return socket.inet_ntoa(fcntl.ioctl(s.fileno(),0x8915,struct.pack('256s', bytes(ifname[:15], 'utf-8')))[20:24])
 
 class ScrollableBoxLayout(BoxLayout):
+    button_layout2 = BoxLayout(orientation='vertical')
     def __init__(self, **kwargs):
+
         super(ScrollableBoxLayout, self).__init__(**kwargs)
         self.orientation = 'horizontal'
 
@@ -86,10 +90,19 @@ class ScrollableBoxLayout(BoxLayout):
         scroll_view.add_widget(self.content_layout)
         scroll_layout.add_widget(scroll_view)
 
+        image = Image(source='useme.png', size_hint=(None, None), size=(200, 200), pos_hint={'right': 1, 'bottom': 1})
+
         # Add the left and right layouts to the main layout
         self.add_widget(button_layout)
         self.add_widget(scroll_layout)
+        #self.add_widget(button_layout_2)
         self.scroll_view = scroll_view
+
+    def load_and_display_image(self, image_source):
+        #self.content_layout.clear_widgets()
+        image = Image(source=image_source, size_hint=(1,None), size=(470, 470), pos_hint={'right': 1, 'bottom': 1})
+        self.content_layout.add_widget(image)
+
 
     def button_pressed(self, button_text):
         self.content_layout.clear_widgets()
@@ -104,11 +117,13 @@ class ScrollableBoxLayout(BoxLayout):
         App.get_running_app().stop()
     
     def speed_test(self, button_text):
+        
         stdoutdata = subprocess.getoutput("./speedtest -f json")
         try:
             results = json.loads(stdoutdata)
         except ValueError:
             pass
+        '''
         download_result = results["download"]["bandwidth"]
         upload_result = results["upload"]["bandwidth"]
         download_result = str(round(download_result / 125000, 2))
@@ -116,16 +131,26 @@ class ScrollableBoxLayout(BoxLayout):
         ping_result = results["ping"]["high"]
         ping = str(round(ping_result, 0))
         your_isp = results["isp"]
+        '''
         share_link = results["result"]["url"]
-
         self.content_layout.clear_widgets();
+        '''
         download_label = Label(text=f'Download Speed: ' + download_result + 'Mbps',size_hint=(1, None), height=50, halign='left', text_size=(470, None))
         upload_label = Label(text=f'Upload Speed: ' + upload_result +'Mbs',size_hint=(1, None), height=50, halign='left', text_size=(470, None))
         ping_label = Label(text=f'Ping: '+ ping+'ms',size_hint=(1, None), height=50, halign='left', text_size=(470, None))
+        isp_label = Label(text=f'Your ISP: '+ your_isp ,size_hint=(1, None), height=50, halign='left', text_size=(470, None))
         self.content_layout.add_widget(download_label)
         self.content_layout.add_widget(upload_label)
         self.content_layout.add_widget(ping_label)
+        self.content_layout.add_widget(isp_label)
         self.scroll_view.scroll_y=1
+        #self.content_layout.clear_widgets();
+        '''
+        image_path = share_link + '.png'
+        self.download_image(image_path)
+        #image = Image(source=image_path, size_hint=(None, None), size=(200, 200), pos_hint={'right': 1, 'bottom': 1})
+        
+        self.load_and_display_image('useme.png')
 
     def network_scan(self, button_text):
         self.content_layout.clear_widgets();
@@ -196,10 +221,25 @@ class ScrollableBoxLayout(BoxLayout):
         self.content_layout.add_widget(connection_flag_label)
         self.scroll_view.scroll_y=1
 
+    def download_image(self, url):
+        # Send a GET request to the URL
+        response = requests.get(url)
+
+        # Check if the request was successful
+        if response.status_code == requests.codes.ok:
+            # Open the file in binary mode and write the image content
+            with open('useme.png', 'wb') as file:
+                file.write(response.content)
+
+            #print(f"Image downloaded successfully: {save_path}")
+        else:
+            print(f"Failed to download image: {response.status_code}")
+
 
 class MyApp(App):
     def build(self):
         layout = ScrollableBoxLayout()
+        self.title = 'Netapp-Touch'
         # Set the app to full screen
         # Enable touch mode
         Config.set('input', 'mouse', 'mouse,multitouch_on_demand')
