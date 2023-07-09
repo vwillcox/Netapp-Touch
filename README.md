@@ -1,25 +1,24 @@
-# Test Branch
-I am testing various other readouts for the Screen. However some of these are very broken.
-I am using the testing brach to commit changes should I need to reflash the OS
-Use as your OWN RISK!
-
-```
-sudo python3 main.py
-```
-
-Will show 
 ![New Speed Test Screen](speedtest-new.png)
 
-# Updated 2023
-Updated to use the official Speedtest.net CLI.
+# Network Appliance
+This code will run on a Raspberry Pi and an attached screen (touch or mouse). From there you can run speed tests, find devices on your network and get information about your connection to the network.
 
-Please check https://www.speedtest.net/apps/cli for information on installing this version.
-You will need to run it once manaully to agree to their Terms and conditions
+This is updated to work fully on a Raspberry Pi 4 and in testing - I use the [Pimoroni Hyperpixel 4 Touch](https://shop.pimoroni.com/products/hyperpixel-4?variant=12569485443155)
 
-Network information now shows ALL connected interfaces (Wi-Fi, Wired etc) and displays them all!
+This uses the official Speedtest.net CLI tool
+
+# Installing
+You can install this as follows
+```
+git clone https://github.com/vwillcox/Netapp-Touch.git
+cd Netapp-Touch
+sudo ./install.sh
+```
 
 ## Running From a remote shell
 If you are running this from a remote shell, you can now use runme.sh. This will "Export" the attached display and then run the python script.
+
+```sudo ./runme.sh```
 
 # Update September 2019
 I had been using the "IPGetter" python library. This has vanished. Thankfully there is a new library called "IPGetter2" and it has a compatiblity mode. So I have updated the code to use this
