@@ -3,6 +3,13 @@ I am testing various other readouts for the Screen. However some of these are ve
 I am using the testing brach to commit changes should I need to reflash the OS
 Use as your OWN RISK!
 
+'''
+sudo python3 test.py
+'''
+
+Will show 
+![New Speed Test Screen](speedtest-new.png)
+
 # Updated 2023
 Updated to use the official Speedtest.net CLI.
 
