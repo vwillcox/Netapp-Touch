@@ -20,16 +20,15 @@ If you are running this from a remote shell, you can now use runme.sh. This will
 
 ```sudo ./runme.sh```
 
-# Update September 2019
-I had been using the "IPGetter" python library. This has vanished. Thankfully there is a new library called "IPGetter2" and it has a compatiblity mode. So I have updated the code to use this
+## More information
 
-# Netapp-Touch
 Test your networks speed, connectivity, wifi and find what's connected. This project uses KIVY and KIVY KITCHEN code to create a
 touch screen interface and QR Codes for quick information transfer to mobile devices.
 
 It also provides information about the Raspberry-Pi's network connection (Internal IP and External IP), with a QR-CODE to quick copy
 the information to a mobile device.
-#
+
+## More Screenshots
 ![LAN Information example](https://talktech.info/wp-content/uploads/2023/07/laninfo.png)
 ![Speed Test Example](https://talktech.info/wp-content/uploads/2023/07/speedtest.png)
 
